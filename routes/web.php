@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [PageController::class,'index'])->name('home');
-Route::get('/curso/{course:slug}', [PageController::class,'course'])->name('course');
+Route::get('/', [PageController::class,'index'])->middleware('auth')->name('home');
+Route::get('/curso/{course:slug}', [PageController::class,'course'])->middleware('auth')->name('course');
 
 
 

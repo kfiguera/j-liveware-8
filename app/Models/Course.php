@@ -13,6 +13,10 @@ class Course extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function posts()
+    {
+        return $this->HasMany(Post::class);
+    }
 
     public function getGetExcerptAttribute()
     {

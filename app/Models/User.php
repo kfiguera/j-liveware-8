@@ -58,4 +58,9 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function getAvatarAttribute()
+    {
+        return "https://via.placeholder.com/150x150.png/7367f0/FFFFFF?text={$this->name[0]}";
+    }
 }

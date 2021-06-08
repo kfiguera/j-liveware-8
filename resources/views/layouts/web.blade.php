@@ -9,32 +9,31 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    @livewireStyles
+    <!-- Scripts -->
+    <script src="{{ mix('js/app.js') }}" defer></script>
 </head>
 <body>
-<header class="shadow-lg">
-    <div class="bg-white py-1">
-        <nav class="py-2">
-            <a href="{{ route('home') }}">
-                <img src="{{ asset('images/logo.png') }}" class="h-10 mx-auto">
-            </a>
-        </nav>
-    </div>
 
-</header>
-<main class="py-10">
-    <div class="container mx-auto px-4">
-        @yield('content')
-    </div>
-</main>
-<footer class="py-4 text-center">
-    @auth
-        <a href="{{ url('dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
-    @else
-        <a href="{{ url('login') }}" class="text-sm text-gray-700 underline mr-3">Login</a>
-        <a href="{{ url('register') }}" class="text-sm text-gray-700 underline">Register</a>
-    @endif
-</footer>
-<!-- Scripts -->
-<script src="{{ mix('js/app.js') }}" defer></script>
+<x-jet-banner/>
+@livewire('navigation-menu')
+<div class="min-h-screen bg-gray-100">
+    <!-- Page Heading -->
+    @if (isset($header))
+        <header class="bg-white shadow">
+            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                {{ $header }}
+            </div>
+        </header>
+
+@endif
+<!-- Page Content -->
+    <main>
+        {{ $slot }}
+    </main>
+
+</div>
+@stack('modals')
+@livewireScripts
 </body>
 </html>
